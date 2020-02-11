@@ -20,44 +20,64 @@
 //console.log(dataHtml);
 
 tableBody.innerHTML = dataHtml;
-
 }*/
-  const AttName = "";
-  const AttEyes = "";
-  const AttHair = "";
-  const AttSize = "";
 
+const AttTypeE1 = document.getElementById('sltPet');
+const AttNameE1 = document.getElementById('name');
+const AttEyesE1 = document.getElementById('eyes');
+const AttHairE1 = document.getElementById('hairColor');
+const AttSizeE1 = document.getElementById('sltsize');
+ 
 
-document.getElementById('Att-Form')
-.addEventListener('submit', DatPet => {
-  this.AttName = document.getElementById('name').value;
-  this.AttEyes = document.getElementById('eyes').value;
-  this.AttHair = document.getElementById('hairColor').value;
-  this.AttSize = document.getElementById('sltsize').value;
+document.getElementById('Att-Form').addEventListener('submit', DatPet => {
+  let AttType = AttTypeEl.value;
+  let AttName = AttNameE1.value;
+  let AttEyes = AttEyesE1.value;
+  let AttHair = AttHairE1.value;
+  let AttSize = AttSizeE1.value;
 
-//console.log('Name ' + this.AttName, 'eyes ' + this.AttEyes, 'hair ' + this.AttHair, 'size ' + this.AttSize )
+//console.log('type '+ AttType);
 
+   if(AttType < 2){
+     let dog = new Doggy(AttName, AttEyes, AttHair, AttSize);
+      
+
+    } else if(AttType > 1 && AttType <3){
+      let goose = new Goosling(AttName, AttEyes, AttHair, AttSize);
+      
+
+    }else if(AttType < 4 && AttType > 2){
+      let cat = new Puss(AttName, AttEyes, AttHair, AttSize);
+      
+    }
+    else{
+      console.log('none');
+    }
+console.log(dog);
 });
 
 
 //The super class
 class PetShape {
-   constructor(name, eyeColor, hairColor, size) {
+   constructor(AttName, AttEyes, AttHair, AttSize) {
      
-     this.name = 'no-name';
-     this.eyeColor = 'grey';
-     this.hairColor = 'grey';
-     this.size = 'default';
+     this.AttName = 'no-name';
+     this.AttEyes = 'grey';
+     this.AttHair = 'grey';
+     this.AttSize = 'default';
+     
 
    }
 
 /// Being loyal to itself
    loyalty(){
-     this.loyal = loyal;
+     this.loyal = AttName;
+     console.log(loyal);
 
    }
    makeNoise() {
      this.noise = noise;
+     console.log('SuperClass '+ noise);
 
      /*if(petType === 'dog' noise ="Woof");
      if(petType === 'cat' noise ="Meow");
@@ -101,25 +121,26 @@ class PetShape {
    }
 
    makeNoise(){
-   this.noise="woof, woof";
+   noise="woof, woof";
+   console.log('subClass ' + noise);
    
    }
 
    TurnOn(){
    let holding = "Bone";
-   return `${super.TurnOn()} with a ${holding}`;
+   return `${super.AttName} with a ${holding}`;
 
 
   }
    Figth(){
    
    }
+  
 
  }
  
- var dog = new Doggy (AttName, AttEyes, AttHair, AttSize);
- console.log(dog);
- //New instance of Goose based on requirements
+ 
+  //New instance of Goose based on requirements
  class Goosling extends PetShape{
    constructor(... args) {
      super(... args);
@@ -145,3 +166,62 @@ class PetShape {
    }
 
  }
+
+  class Puss extends PetShape{
+   constructor(... args) {
+     super(... args);
+     
+   }
+   //adding LovedOnes  
+   loyalty(){
+   //this.loyal =  
+   }
+
+   makeNoise(){
+   this.noise="Miau";
+   
+   }
+
+   TurnOn(){
+   let holding = "Fishing Rod";
+   return `${super.name} with a ${holding}`;
+
+
+  }
+   Figth(){
+   
+   }
+  
+
+ }
+
+ /// Printing Classes and code
+
+
+const type = document.querySelector('#sltPet');
+const name = document.querySelector('#name');
+const eyeColor = document.querySelector('#eyes');
+const hairColor = document.querySelector('#hairColor');
+const size = document.querySelector('#sltsize');
+//const behavior1 = document.querySelector('#behavior1');
+const codedisplay = document.getElementById('footerOut');
+const flexCtr = document.querySelector('.flex-ctr');
+const createPetBtn = document.querySelector('#createPet');
+  createPetBtn.addEventListener('click', function(e) {
+       e.preventDefault();
+      const classTemplate = `class ${e.target.value} extends PetShape {
+        constructor(type,name,eyeColor,hairColor,size){
+        this.type = type;
+        this.name = name;
+        this.eyeColor = eyeColor;
+        this.hairColor = hairColor;
+        this.size = size;
+
+            } 
+        // ${type.value}() { }            
+         }`  
+            codedisplay.textContent = classTemplate;
+          //console.log(classTemplate);
+            
+        })
+ 
