@@ -1,83 +1,75 @@
 
-
-//window.onload=()=>{
- // loadTableData(req1);
-//};
-
-/*function loadTableData(req1){
-  const tableBody = document.getElementById('tableData');
-  let dataHtml = '';
-
-  for(let pet of req1){
-    dataHtml += `<tr><th>type<td>${pet.type}</td></th></tr>
-                 <tr><th>name<td>${pet.name}</td></th></tr>
-                 <tr><th>eyes<td>${pet.eyes}</td></th></tr>
-                 <tr><th>body<td>${pet.body}</td></th></tr>
-                 <tr><th>coat<td>${pet.coat}</td></th></tr>
-                 <tr><th>spots<td>${pet.spots}</td></th></tr>`;
-
-  }
-//console.log(dataHtml);
-
-tableBody.innerHTML = dataHtml;
-}*/
-
 const AttTypeE1 = document.getElementById('sltPet');
 const AttNameE1 = document.getElementById('name');
 const AttEyesE1 = document.getElementById('eyes');
 const AttHairE1 = document.getElementById('hairColor');
 const AttSizeE1 = document.getElementById('sltsize');
- 
 
 document.getElementById('Att-Form').addEventListener('submit', DatPet => {
-  let AttType = AttTypeEl.value;
+
+  let AttType = AttTypeE1.value;
   let AttName = AttNameE1.value;
   let AttEyes = AttEyesE1.value;
   let AttHair = AttHairE1.value;
   let AttSize = AttSizeE1.value;
 
-//console.log('type '+ AttType);
 
    if(AttType < 2){
+
      let dog = new Doggy(AttName, AttEyes, AttHair, AttSize);
-      
+     console.log(dog.AttName);
 
     } else if(AttType > 1 && AttType <3){
       let goose = new Goosling(AttName, AttEyes, AttHair, AttSize);
+      console.log(goose.AttName);
       
 
     }else if(AttType < 4 && AttType > 2){
       let cat = new Puss(AttName, AttEyes, AttHair, AttSize);
+      console.log(cat.AttName);
       
     }
     else{
       console.log('none');
     }
-console.log(dog);
+
 });
+
+const RetB = document.querySelector("#modbehavior");
+const inpt = document.getElementById('family');
+RetB.addEventListener('click', function(RetBhv) {
+  RetBhv.preventDefault();
+
+  const Owners = "JohnDoeTest"; //Method GetFamily();
+  inpt.innerHTML = Owners;
+
+  })
+
+
+
 
 
 //The super class
 class PetShape {
-   constructor(AttName, AttEyes, AttHair, AttSize) {
+   constructor(AttName = 'no-name', AttEyes = 'grey', AttHair ='grey', AttSize = 'default') {
      
-     this.AttName = 'no-name';
-     this.AttEyes = 'grey';
-     this.AttHair = 'grey';
-     this.AttSize = 'default';
+     this.AttName = AttName;
+     this.AttEyes = AttEyes;
+     this.AttHair = AttHair;
+     this.AttSize = AttSize;
      
 
    }
 
-/// Being loyal to itself
-   loyalty(){
-     this.loyal = AttName;
-     console.log(loyal);
+/// stared being itself
+   GetFamily(){
+     let family = this.AttName;
+     return family;
 
    }
    makeNoise() {
      this.noise = noise;
-     console.log('SuperClass '+ noise);
+     
 
      /*if(petType === 'dog' noise ="Woof");
      if(petType === 'cat' noise ="Meow");
@@ -86,24 +78,24 @@ class PetShape {
          
   }
 
-   TurnOn(){
+   /*TurnOn(){
      return `${this.name} in ON`;
-    /*if(petType === 'dog' run ="Scratching");
+    if(petType === 'dog' run ="Scratching");
      if(petType === 'cat' run ="Licking");
      if(petType === 'goose' run ="Plucking");
-     */
-    }
+     
+    }*/
 
-   Fight(){
+  /* Fight(){
     this.attack = attack;
 
-    /*if(petType === 'dog' attack ="Bite");
+    if(petType === 'dog' attack ="Bite");
     if(petType === 'cat' attack ="Scratch");
-    if(petType === 'goose' attack ="Peck");*/
+    if(petType === 'goose' attack ="Peck");
 
      return attack;
      
-   }
+   }*/
    
  }
 
@@ -116,13 +108,15 @@ class PetShape {
      
    }
    //adding LovedOnes  
-   loyalty(){
-   //this.loyal =  
+   GetFamily(){
+   let LovedOnes=[];
+   let family = `${this.AttName} ${LovedOnes}`;
+   return family;
    }
 
    makeNoise(){
-   noise="woof, woof";
-   console.log('subClass ' + noise);
+   let noise="woof, woof";
+   return noise;
    
    }
 
@@ -147,12 +141,13 @@ class PetShape {
      
    }
    //adding LovedOnes  
-   loyalty(){
+   GetFamily(){
    
    }
 
    makeNoise(){
    this.noise="Honk, Honk";
+   return noise;
    
    }
    TurnOn(){
@@ -173,7 +168,7 @@ class PetShape {
      
    }
    //adding LovedOnes  
-   loyalty(){
+   GetFamily(){
    //this.loyal =  
    }
 
@@ -197,7 +192,6 @@ class PetShape {
 
  /// Printing Classes and code
 
-
 const type = document.querySelector('#sltPet');
 const name = document.querySelector('#name');
 const eyeColor = document.querySelector('#eyes');
@@ -220,7 +214,7 @@ const createPetBtn = document.querySelector('#createPet');
             } 
         // ${type.value}() { }            
          }`  
-            codedisplay.textContent = classTemplate;
+            codedisplay.innerHTML = classTemplate;
           //console.log(classTemplate);
             
         })
