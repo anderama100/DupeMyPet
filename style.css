@@ -57,7 +57,7 @@ ul li ul li {
  nav {
   display: flex;
   height: 50px;
-  background-color: #eaf8f1;
+  background-color: #cffde68f;
   flex-direction: row;
   border-style:solid;
   justify-content:center;
@@ -70,13 +70,13 @@ ul li ul li {
    }
 
 aside{
-  background-color: #f2f4f8;
+  background-color: #f3f2f8;
   text-align:unset;
 }
 
 main {
-   background-color: #fcf7ee;
-   
+   background-color: #cddbf736;
+      
 
  } 
  img{
@@ -89,7 +89,7 @@ main {
  }
  
  footer {
-   background-color: #f4fff9;
+   background-color: #c0eebaad;
    overflow:scroll;
  } 
  
@@ -102,6 +102,35 @@ main {
    grid-column: 1/3;
    height:120px;
    
+ }
+ .row{
+   display:flex;
+   flex-direction: table-row;
+   flex-wrap: wrap;
+   width: 100%;
    
 
  }
+.column{
+  display:flex;
+  flex-direction:column;
+  flex-basis: 100%;
+  flex: 1;
+
+}
+
+.Fstcolumn{
+  height:100px;
+  
+}
+.Sndcolumn{
+  height:100%;
+  
+  
+}
+.Trdcolumn{
+  height:100%;
+  
+  
+}
+
